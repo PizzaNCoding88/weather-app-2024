@@ -1,11 +1,17 @@
-import { Inter } from "next/font/google";
 import { Inria_Sans } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
 const inria_sans = Inria_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "700"],
+  variable: "--font-inria-sans",
+});
+
+const josefin_sans = Josefin_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-josefin-sans",
 });
 
 export const metadata = {
@@ -16,7 +22,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inria_sans.variable} ${josefin_sans.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }
