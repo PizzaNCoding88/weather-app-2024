@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [noGeoLocation, setNoGeoLocation] = useState({});
-  const [weather, setWeather] = useState({});
+  const [weather, setWeather] = useState(false);
 
   useEffect(() => {
     getBrowserLocation();
@@ -42,7 +42,7 @@ export default function Home() {
 
   return (
     <main>
-      <CurrentWeather data={weather} />
+      <>{weather ? <CurrentWeather data={weather} /> : null}</>
     </main>
   );
 }

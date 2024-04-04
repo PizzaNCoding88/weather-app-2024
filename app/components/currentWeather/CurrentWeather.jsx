@@ -1,5 +1,6 @@
 import React from "react";
 import Current from "./CurrentWeather.module.css";
+import Image from "next/image";
 
 const CurrentWeather = (props) => {
   const { data } = props;
@@ -36,19 +37,33 @@ const CurrentWeather = (props) => {
   const weekDay = days[date.getDay()];
 
   return (
-    <section className={Current.container}>
-      <div className={Current.date}>
-        {today} {""}
-        {month}, {weekDay}
-      </div>
-      <div className={Current.location}>
-        {data.name},<span>{data.sys.country}</span>
-      </div>
-      <div className={Current.current_temp}>Current temp</div>
-      <div className={Current.feels_like}>Feels Like</div>
-      <div className={Current.current_weather}>Current Weather</div>
-      <div className={Current.high_low}>High and Low</div>
-    </section>
+    <>
+      {data ? (
+        <section className={Current.container}>
+          <div className={Current.date}>
+            {today} {""}
+            {month}, {weekDay}
+          </div>
+          <div className={Current.location}>
+            {data.name}, {data.sys.country}
+          </div>
+          <div className={Current.current_temp}>
+            {Math.trunc(data.main.temp)} C
+          </div>
+          <div className={Current.feels_like}>
+            Feels Like {Math.trunc(data.main.feels_like)} C
+          </div>
+          <div className={Current.current_weather}>
+            <div>{data.weather[0].main}</div>
+            <Image alt="weather-icon" />
+          </div>
+          <div className={Current.high_low}>
+            <div>H: {Math.trunc(data.main.temp_max)} C</div>
+            <div>L: {Math.trunc(data.main.temp_min)} C</div>
+          </div>
+        </section>
+      ) : null}
+    </>
   );
 };
 
