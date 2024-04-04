@@ -2,7 +2,9 @@ import Hourly from "./HourlyForecast.module.css";
 import Sun from "../../assets/sunny.svg";
 import Image from "next/image";
 
-const HourlyForecast = () => {
+const HourlyForecast = (props) => {
+  const { data } = props;
+  console.log(data);
   return (
     <>
       <div className={Hourly.container}>

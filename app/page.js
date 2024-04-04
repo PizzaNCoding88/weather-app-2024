@@ -26,7 +26,7 @@ export default function Home() {
     setNoGeoLocation(false);
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    console.log(latitude, longitude);
+    // console.log(latitude, longitude);
     fetchWeather(latitude, longitude);
     fetchHourlyWeather(latitude, longitude);
   }
@@ -41,16 +41,17 @@ export default function Home() {
     );
     const weather = await temporaryWeather.json();
     setWeather(weather);
-    console.log(weather);
+    // console.log(weather);
   }
 
   async function fetchHourlyWeather(latitude, longitude) {
     const tempHourlyWeather = await fetch(
       `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=cc8ca712bf2eefce816c3ed3d000e9a8`
     );
-    const hourlyWeather = await tempHourlyWeather.json();
+    const hourlyWeatherTemp = await tempHourlyWeather.json();
+    const hourlyWeather = hourlyWeatherTemp.list;
     setHourlyWeather(hourlyWeather);
-    console.log(hourlyWeather);
+    // console.log(hourlyWeather);
   }
 
   return (
@@ -59,7 +60,7 @@ export default function Home() {
         {weather ? (
           <div>
             <CurrentWeather data={weather} />
-            <HourlyForecast data={weather} />
+            <HourlyForecast data={hourlyWeather} />
           </div>
         ) : (
           <LoadingPage />
