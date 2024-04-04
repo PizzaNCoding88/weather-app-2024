@@ -33,6 +33,7 @@ body {
 }
 
 .main-bg {
+  min-height: 100dvh;
   background-image: url("./assets/main-bg.png");
   background-size: cover;
 }
