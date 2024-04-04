@@ -33,6 +33,6 @@ body {
 }
 
 .main-bg {
-  background-image: url("../../../../Users/umberto.nardiello/Downloads/unsplash_IUhATCI2T-M.png");
+  background-image: url("./assets/main-bg.png");
   background-size: cover;
 }
