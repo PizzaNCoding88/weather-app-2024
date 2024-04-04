@@ -1,7 +1,7 @@
 import React from "react";
 import Current from "./CurrentWeather.module.css";
 import Image from "next/image";
-import Cloud from "../../assets/cloud-solid.svg";
+import Cloud1 from "../../assets/cloud.svg";
 
 const CurrentWeather = (props) => {
   const { data } = props;
@@ -56,7 +56,7 @@ const CurrentWeather = (props) => {
           </div>
           <div className={Current.current_weather}>
             <div>{data.weather[0].main}</div>
-            <Image alt="weather-icon" src={Cloud} />
+            <Image alt="weather-icon" src={Cloud1} />
           </div>
           <div className={Current.high_low}>
             <div>H: {Math.trunc(data.main.temp_max)} °C</div>

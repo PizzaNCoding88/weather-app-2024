@@ -3,10 +3,12 @@ import Image from "next/image";
 import CurrentWeather from "./components/currentWeather/CurrentWeather";
 import { useEffect, useState } from "react";
 import LoadingPage from "./components/loadingPage/LoadingPage";
+import HourlyForecast from "./components/hourlyForecast/HourlyForecast";
 
 export default function Home() {
   const [noGeoLocation, setNoGeoLocation] = useState({});
   const [weather, setWeather] = useState(false);
+  const [hourlyWeather, setHourlyWeather] = useState(false);
 
   useEffect(() => {
     getBrowserLocation();
@@ -26,6 +28,7 @@ export default function Home() {
     const longitude = position.coords.longitude;
     console.log(latitude, longitude);
     fetchWeather(latitude, longitude);
+    fetchHourlyWeather(latitude, longitude);
   }
 
   function error(error) {
@@ -41,9 +44,27 @@ export default function Home() {
     console.log(weather);
   }
 
+  async function fetchHourlyWeather(latitude, longitude) {
+    const tempHourlyWeather = await fetch(
+      `api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=cc8ca712bf2eefce816c3ed3d000e9a8`
+    );
+    const hourlyWeather = await tempHourlyWeather.json();
+    setHourlyWeather(hourlyWeather);
+    console.log(hourlyWeather);
+  }
+
   return (
-    <main>
-      <>{weather ? <CurrentWeather data={weather} /> : <LoadingPage />}</>
+    <main className="main-bg">
+      <>
+        {weather ? (
+          <div>
+            <CurrentWeather data={weather} />
+            <HourlyForecast data={weather} />
+          </div>
+        ) : (
+          <LoadingPage />
+        )}
+      </>
     </main>
   );
 }
