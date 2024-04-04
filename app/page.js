@@ -2,6 +2,7 @@
 import Image from "next/image";
 import CurrentWeather from "./components/currentWeather/CurrentWeather";
 import { useEffect, useState } from "react";
+import LoadingPage from "./components/loadingPage/LoadingPage";
 
 export default function Home() {
   const [noGeoLocation, setNoGeoLocation] = useState({});
@@ -42,7 +43,7 @@ export default function Home() {
 
   return (
     <main>
-      <>{weather ? <CurrentWeather data={weather} /> : null}</>
+      <>{weather ? <CurrentWeather data={weather} /> : <LoadingPage />}</>
     </main>
   );
 }

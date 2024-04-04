@@ -3,11 +3,11 @@
 }
 
 .date {
-  @apply text-xl;
+  @apply text-lg;
 }
 
 .location {
-  @apply uppercase text-2xl;
+  @apply uppercase text-4xl;
 }
 
 .current_temp {
