@@ -1,3 +1,31 @@
 .container {
   @apply font-inria w-4/5 mx-auto py-10 text-center flex flex-col gap-10;
 }
+
+.date {
+  @apply text-xl;
+}
+
+.location {
+  @apply uppercase text-2xl;
+}
+
+.current_temp {
+  @apply text-4xl;
+}
+
+.current_weather {
+  @apply text-4xl;
+}
+
+.high_low {
+  @apply text-lg;
+}
+
+.current_weather,
+.high_low {
+  @apply flex items-center justify-center gap-8;
+}
+.current_weather img {
+  @apply bg-white h-12 w-12 rounded-xl p-1;
+}
