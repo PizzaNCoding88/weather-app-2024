@@ -4,8 +4,8 @@ import Loading from "./LoadingPage.module.css";
 const LoadingPage = () => {
   return (
     <>
-      <div class={Loading.container}>
-        <div class={Loading.loader}></div>
+      <div className={Loading.container}>
+        <div className={Loading.loader}></div>
       </div>
     </>
   );
