@@ -46,7 +46,7 @@ export default function Home() {
 
   async function fetchHourlyWeather(latitude, longitude) {
     const tempHourlyWeather = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=cc8ca712bf2eefce816c3ed3d000e9a8`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=cc8ca712bf2eefce816c3ed3d000e9a8&units=metric`
     );
     const hourlyWeatherTemp = await tempHourlyWeather.json();
     const hourlyWeather = hourlyWeatherTemp.list;
@@ -57,7 +57,7 @@ export default function Home() {
   return (
     <main className="main-bg">
       <>
-        {weather ? (
+        {weather && hourlyWeather ? (
           <div>
             <CurrentWeather data={weather} />
             <HourlyForecast data={hourlyWeather} />
