@@ -17,8 +17,8 @@ const HourlyForecast = (props) => {
       <div className={Hourly.container}>
         <p>Hourly Forecast</p>
         <div className={Hourly.hourscontainer}>
-          {data.map((data, key) => (
-            <HourlyForecastPill data={data} key={key} />
+          {data.map((data, i) => (
+            <HourlyForecastPill data={data} key={i} />
           ))}
         </div>
       </div>

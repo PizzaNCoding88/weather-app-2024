@@ -4,7 +4,7 @@ import Sun from "../../assets/sunny.svg";
 import Image from "next/image";
 
 const HourlyForecastPill = (props) => {
-  const { data, key } = props;
+  const { data } = props;
 
   function unixToTime(time) {
     let date = new Date(time * 1000);
@@ -14,7 +14,7 @@ const HourlyForecastPill = (props) => {
 
   const pill = (
     <div>
-      {console.log(data)}
+      {/* {console.log(data)} */}
       <div className={Hourly.hour}>
         <p className={Hourly.dayhour}>{unixToTime(data.dt)}:00</p>
         <Image alt="weather Icon" src={Sun}></Image>
