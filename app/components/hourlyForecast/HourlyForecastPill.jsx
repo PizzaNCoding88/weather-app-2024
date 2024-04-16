@@ -20,36 +20,6 @@ const HourlyForecastPill = (props) => {
         <Image alt="weather Icon" src={Sun}></Image>
         <p className={Hourly.temp}>{Math.trunc(data.main.temp)}°C</p>
       </div>
-      <div className={Hourly.hour}>
-        <p className={Hourly.dayhour}>3PM</p>
-        <Image alt="weather Icon" src={Sun}></Image>
-        <p className={Hourly.temp}>10°C</p>
-      </div>
-      <div className={Hourly.hour}>
-        <p className={Hourly.dayhour}>3PM</p>
-        <Image alt="weather Icon" src={Sun}></Image>
-        <p className={Hourly.temp}>10°C</p>
-      </div>
-      <div className={Hourly.hour}>
-        <p className={Hourly.dayhour}>3PM</p>
-        <Image alt="weather Icon" src={Sun}></Image>
-        <p className={Hourly.temp}>10°C</p>
-      </div>
-      <div className={Hourly.hour}>
-        <p className={Hourly.dayhour}>3PM</p>
-        <Image alt="weather Icon" src={Sun}></Image>
-        <p className={Hourly.temp}>10°C</p>
-      </div>
-      <div className={Hourly.hour}>
-        <p className={Hourly.dayhour}>3PM</p>
-        <Image alt="weather Icon" src={Sun}></Image>
-        <p className={Hourly.temp}>10°C</p>
-      </div>
-      <div className={Hourly.hour}>
-        <p className={Hourly.dayhour}>3PM</p>
-        <Image alt="weather Icon" src={Sun}></Image>
-        <p className={Hourly.temp}>10°C</p>
-      </div>
     </div>
   );
   return <div>{data ? pill : null}</div>;

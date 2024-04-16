@@ -3,7 +3,7 @@
 }
 
 .hourscontainer {
-  @apply flex gap-2 overflow-x-auto mt-8;
+  @apply flex gap-2 overflow-x-auto mt-8 flex-nowrap;
 }
 
 .hourscontainer::-webkit-scrollbar {
