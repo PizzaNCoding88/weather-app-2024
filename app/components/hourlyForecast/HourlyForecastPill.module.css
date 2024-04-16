@@ -1,7 +1,11 @@
-.hour {
-  @apply flex flex-col items-center gap-8 bg-[#d0d0d0f1] py-3 px-3 rounded-full;
+.dayhour {
+  @apply font-bold;
 }
 
-.hour img {
-  @apply bg-white;
+.hour {
+  @apply flex flex-col items-center gap-8 bg-[#d0d0d0f1] py-3 px-3 rounded-full w-[54px];
 }
+
+/* .hour img {
+  @apply bg-white;
+} */
