@@ -4,6 +4,7 @@ import CurrentWeather from "./components/currentWeather/CurrentWeather";
 import { useEffect, useState } from "react";
 import LoadingPage from "./components/loadingPage/LoadingPage";
 import HourlyForecast from "./components/hourlyForecast/HourlyForecast";
+import DailyForecast from "./components/dailyForecast/DailyForecast";
 
 export default function Home() {
   const [noGeoLocation, setNoGeoLocation] = useState({});
@@ -61,6 +62,7 @@ export default function Home() {
           <div>
             <CurrentWeather data={weather} />
             <HourlyForecast data={hourlyWeather} />
+            <DailyForecast />
           </div>
         ) : (
           <LoadingPage />

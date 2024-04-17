@@ -3,6 +3,7 @@ import Hourly from "./HourlyForecastPill.module.css";
 // import Sun from "../../assets/sunny.svg";
 import Sun from "../../assets/icons/sun.png";
 import Cloud from "../../assets/icons/cloud.png";
+import Rain from "../../assets/icons/Rain.png";
 import Image from "next/image";
 
 const HourlyForecastPill = (props) => {
@@ -24,7 +25,7 @@ const HourlyForecastPill = (props) => {
         <p className={Hourly.dayhour}>{unixToTime(data.dt)}:00</p>
         <Image
           alt="weather Icon"
-          src={`/app/assets/icons/${currentWeather}.png`}
+          src={`/assets/icons/${currentWeather}.png`}
           width={10}
           height={10}
         ></Image>
