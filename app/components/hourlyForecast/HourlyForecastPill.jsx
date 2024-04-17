@@ -16,19 +16,17 @@ const HourlyForecastPill = (props) => {
   }
 
   const currentWeather = data.weather[0].main;
-  console.log(currentWeather);
+  // console.log(currentWeather);
 
+  const path = `/_next/static/media/${currentWeather}.png`;
   const pill = (
     <div>
-      {console.log(data)}
+      {/* {console.log(data)} */}
       <div className={Hourly.hour}>
         <p className={Hourly.dayhour}>{unixToTime(data.dt)}:00</p>
-        <Image
-          alt="weather Icon"
-          src={`/app/assets/icons/${currentWeather}.png`}
-          width={10}
-          height={10}
-        ></Image>
+        <div>
+          <Image alt="weather Icon" src={path} width={10} height={10}></Image>
+        </div>
         <p className={Hourly.temp}>{Math.trunc(data.main.temp)}°C</p>
       </div>
     </div>

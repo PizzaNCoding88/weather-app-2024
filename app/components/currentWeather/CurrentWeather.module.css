@@ -26,6 +26,3 @@
 .high_low {
   @apply flex items-center justify-center gap-8;
 }
-.current_weather img {
-  @apply bg-white h-12 w-12 rounded-xl p-1;
-}

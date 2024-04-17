@@ -37,6 +37,9 @@ const CurrentWeather = (props) => {
 
   const weekDay = days[date.getDay()];
 
+  const currentWeather = data.weather[0].main;
+  const path = `/_next/static/media/${currentWeather}.png`;
+
   return (
     <>
       {data ? (
@@ -56,7 +59,9 @@ const CurrentWeather = (props) => {
           </div>
           <div className={Current.current_weather}>
             <div>{data.weather[0].main}</div>
-            <Image alt="weather-icon" src={Cloud1} />
+            <div className="h-9 w-10 relative">
+              <Image alt="weather-icon" src={path} fill={true} />
+            </div>
           </div>
           <div className={Current.high_low}>
             <div>H: {Math.trunc(data.main.temp_max)} °C</div>
