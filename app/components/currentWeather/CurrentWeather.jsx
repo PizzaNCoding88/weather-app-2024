@@ -1,7 +1,7 @@
 import React from "react";
 import Current from "./CurrentWeather.module.css";
 import Image from "next/image";
-import Cloud1 from "../../assets/cloud.svg";
+// import Cloud1 from "../../assets/cloud.svg";
 
 const CurrentWeather = (props) => {
   const { data } = props;
