@@ -19,7 +19,8 @@ const HourlyForecastPill = (props) => {
   // console.log(currentWeather);
 
   const path = `/../assets/icons${currentWeather}.png`;
-  // const path = `/_next/static/media/${currentWeather}.png`;
+  // const path = `/../assets/icons${currentWeather}.png`;
+  // const path =  `/_next/static/media/${currentWeather}.png`;
   const pill = (
     <div>
       {/* {console.log(data)} */}
