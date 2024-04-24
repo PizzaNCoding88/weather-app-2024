@@ -57,14 +57,18 @@ export default function Home() {
 
   const dailyWeatherArray = Object.values(hourlyWeather);
   // console.log(dailyWeatherArray);
-  dailyWeatherArray.forEach((entry, i) => {
+  const middayWeather = [];
+  dailyWeatherArray.forEach((entry) => {
     const hoursOnly = entry.dt_txt.split(" ")[1].split(":")[0];
-    const middayWeather = [];
     let j = 0;
     if (hoursOnly === "12") {
       middayWeather[j] = entry;
+      j++;
     }
+    return middayWeather;
   });
+
+  // console.log(middayWeather);
 
   return (
     <main className="main-bg">

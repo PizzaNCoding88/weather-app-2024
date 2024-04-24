@@ -26,7 +26,6 @@ const HourlyForecastPill = (props) => {
       "Friday",
       "Saturday",
     ];
-    // let day = date.getDay();
     let day = days[date.getDay()];
     return day;
   }
