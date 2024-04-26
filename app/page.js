@@ -10,6 +10,7 @@ export default function Home() {
   const [noGeoLocation, setNoGeoLocation] = useState({});
   const [weather, setWeather] = useState(false);
   const [hourlyWeather, setHourlyWeather] = useState(false);
+  const [location, setLocation] = useState();
 
   useEffect(() => {
     getBrowserLocation();
@@ -27,57 +28,40 @@ export default function Home() {
     setNoGeoLocation(false);
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    // console.log(latitude, longitude);
-    fetchWeather(latitude, longitude);
-    fetchHourlyWeather(latitude, longitude);
+    getNewWeather(latitude, longitude);
+    getLocation(latitude, longitude);
   }
 
   function error(error) {
     setNoGeoLocation(true);
   }
 
-  async function fetchWeather(latitude, longitude) {
-    const temporaryWeather = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=cc8ca712bf2eefce816c3ed3d000e9a8&units=metric`
+  async function getNewWeather(lat, lon) {
+    const tempWeather = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,is_day,weather_code,&daily=temperature_2m_max,temperature_2m_min`
     );
-    const weather = await temporaryWeather.json();
-    setWeather(weather);
-    // console.log(weather);
+    const newWeather = await tempWeather.json();
+    setWeather(newWeather);
   }
 
-  async function fetchHourlyWeather(latitude, longitude) {
-    const tempHourlyWeather = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&cnt=10&appid=cc8ca712bf2eefce816c3ed3d000e9a8&units=metric`
+  async function getLocation(lat, lon) {
+    const tempLocation = await fetch(
+      `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=9b654175132c4e93906cd41802634090`
     );
-    const hourlyWeatherTemp = await tempHourlyWeather.json();
-    const hourlyWeather = hourlyWeatherTemp.list;
-    setHourlyWeather(hourlyWeather);
-    // console.log(hourlyWeather);
+    const location = await tempLocation.json();
+    // console.log(location);
+    setLocation(location.features[0].properties);
   }
-
-  const dailyWeatherArray = Object.values(hourlyWeather);
-  // console.log(dailyWeatherArray);
-  const middayWeather = [];
-  dailyWeatherArray.forEach((entry) => {
-    const hoursOnly = entry.dt_txt.split(" ")[1].split(":")[0];
-    let j = 0;
-    if (hoursOnly === "12") {
-      middayWeather[j] = entry;
-      j++;
-    }
-    return middayWeather;
-  });
-
-  // console.log(middayWeather);
 
   return (
     <main className="main-bg">
       <>
-        {weather && hourlyWeather ? (
+        {/* {weather && hourlyWeather ? ( */}
+        {weather && location ? (
           <div>
-            <CurrentWeather data={weather} />
-            <HourlyForecast data={hourlyWeather} />
-            <DailyForecast />
+            <CurrentWeather data={weather} location={location} />
+            {/* <HourlyForecast data={hourlyWeather} /> */}
+            {/* <DailyForecast /> */}
           </div>
         ) : (
           <LoadingPage />
@@ -86,75 +70,3 @@ export default function Home() {
     </main>
   );
 }
-
-// "use client";
-// import Image from "next/image";
-// import CurrentWeather from "./components/currentWeather/CurrentWeather";
-// import { useEffect, useState } from "react";
-// import LoadingPage from "./components/loadingPage/LoadingPage";
-// import HourlyForecast from "./components/hourlyForecast/HourlyForecast";
-
-// export default function Home() {
-//   const [noGeoLocation, setNoGeoLocation] = useState({});
-//   const [weather, setWeather] = useState(false);
-//   const [hourlyWeather, setHourlyWeather] = useState(false);
-
-//   useEffect(() => {
-//     getBrowserLocation();
-//   }, []);
-
-//   function getBrowserLocation() {
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(position, error);
-//     } else {
-//       console.log("error");
-//     }
-//   }
-
-//   function position(position) {
-//     setNoGeoLocation(false);
-//     const latitude = position.coords.latitude;
-//     const longitude = position.coords.longitude;
-//     // console.log(latitude, longitude);
-//     fetchWeather(latitude, longitude);
-//     fetchHourlyWeather(latitude, longitude);
-//   }
-
-//   function error(error) {
-//     setNoGeoLocation(true);
-//   }
-
-//   async function fetchWeather(latitude, longitude) {
-//     const temporaryWeather = await fetch(
-//       `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=cc8ca712bf2eefce816c3ed3d000e9a8&units=metric`
-//     );
-//     const weather = await temporaryWeather.json();
-//     setWeather(weather);
-//     // console.log(weather);
-//   }
-
-//   async function fetchHourlyWeather(latitude, longitude) {
-//     const tempHourlyWeather = await fetch(
-//       `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&cnt=10&appid=cc8ca712bf2eefce816c3ed3d000e9a8&units=metric`
-//     );
-//     const hourlyWeatherTemp = await tempHourlyWeather.json();
-//     const hourlyWeather = hourlyWeatherTemp.list;
-//     setHourlyWeather(hourlyWeather);
-//     // console.log(hourlyWeather);
-//   }
-
-//   return (
-//     <main className="main-bg">
-//       <>
-//         {weather && hourlyWeather ? (
-//           <div>
-//             <CurrentWeather data={weather} />
-//             <HourlyForecast data={hourlyWeather} />
-//           </div>
-//         ) : (
-//           <LoadingPage />
-//         )}
-//       </>
-//     </main>
-//   );
-// }
