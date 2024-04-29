@@ -5,7 +5,6 @@ import Image from "next/image";
 
 const CurrentWeather = (props) => {
   const { data, location } = props;
-  console.log(data, location);
 
   const date = new Date();
   const today = date.getDate();

@@ -38,7 +38,7 @@ export default function Home() {
 
   async function getNewWeather(lat, lon) {
     const tempWeather = await fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,is_day,weather_code,&daily=temperature_2m_max,temperature_2m_min`
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,is_day,weather_code,&hourly=temperature_2m,weather_code,&daily=temperature_2m_max,temperature_2m_min`
     );
     const newWeather = await tempWeather.json();
     setWeather(newWeather);
@@ -60,8 +60,8 @@ export default function Home() {
         {weather && location ? (
           <div>
             <CurrentWeather data={weather} location={location} />
-            {/* <HourlyForecast data={hourlyWeather} /> */}
-            {/* <DailyForecast /> */}
+            <HourlyForecast data={weather} />
+            {/* <DailyForecast />  */}
           </div>
         ) : (
           <LoadingPage />
