@@ -13,17 +13,15 @@ const HourlyForecast = (props) => {
     return hours;
   }
 
-  let times = [],
-    highTemps = [],
-    lowTemps = [];
+  // console.log(times);
 
-  Object.values(data.daily.time).map((item) => times.push(item));
-  Object.values(data.daily.temperature_2m_max).map((item) =>
-    highTemps.push(item)
-  );
-  Object.values(data.daily.temperature_2m_min).map((item) =>
-    lowTemps.push(item)
-  );
+  // Object.values(data.daily.time).map((item) => times.push(item));
+  // Object.values(data.daily.temperature_2m_max).map((item) =>
+  //   highTemps.push(item)
+  // );
+  // Object.values(data.daily.temperature_2m_min).map((item) =>
+  //   lowTemps.push(item)
+  // );
 
   return (
     <>
@@ -35,19 +33,14 @@ const HourlyForecast = (props) => {
           ))}
         </div>
       </div> */}
-      <div className={Hourly.container}>
+      {/* <div className={Hourly.container}>
         <p>Hourly Forecast</p>
-        <div className={Hourly.hourscontainer}>
-          {times.map((_, i) => (
-            <HourlyForecastPill
-              key={i}
-              times={times}
-              high={highTemps}
-              low={lowTemps}
-            />
-          ))}
-        </div>
-      </div>
+        {times.map((time, i) => (
+          // <HourlyForecastPill key={i} time={time} />
+        ))}
+      </div> */}
+      {/* <HourlyForecastPill time={times} /> */}
+      <HourlyForecastPill time={data} />
     </>
   );
 };

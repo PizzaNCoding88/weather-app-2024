@@ -7,9 +7,10 @@ import Hourly from "./HourlyForecastPill.module.css";
 import Image from "next/image";
 
 const HourlyForecastPill = (props) => {
-  const { times, high, low } = props;
+  const { time } = props;
 
-  console.log(times, high, low);
+  console.log(time);
+  // console.log(typeof time.daily.temperature_2m_max);
 
   function unixToTime(time) {
     let date = new Date(time * 1000);
@@ -32,6 +33,9 @@ const HourlyForecastPill = (props) => {
     return day;
   }
 
+  // const day = [...time.daily];
+  // console.log(day);
+
   // const currentWeather = data.weather[0].main;
 
   // const path = `/assets/icons${currentWeather}.png`;
@@ -41,17 +45,25 @@ const HourlyForecastPill = (props) => {
   const pill = (
     <div>
       <div className={Hourly.hour}>
-        <p className={Hourly.dayhour}>{times.slice(-2)}</p>
+        {/* {time.daily.temperature_2m_max.map((day, i) => {
+          <p className={Hourly.dayhour}>{time.daily.time[i].slice(-2)}</p>;
+          console.log(time.daily.time[i].slice(-2));
+        })} */}
+        {time.daily.temperature_2m_max.map((temp, i) => (
+          <p className={Hourly.dayHour} key={i}>
+            {time.daily.time[i].slice(-2)}
+          </p>
+        ))}
         {/* <p className={Hourly.dayhour}>{unixToDate(data.dt)}</p> */}
         <div>
           {/* <Image alt="weather Icon" src={path} width={10} height={10}></Image> */}
         </div>
-        <p className={Hourly.temp}>{high}°C</p>
-        <p className={Hourly.temp}>{low}°C</p>
+        {/* <p className={Hourly.temp}>{high}°C</p>
+        <p className={Hourly.temp}>{low}°C</p> */}
       </div>
     </div>
   );
-  return <div>{times ? pill : null}</div>;
+  return <div>{time ? pill : null}</div>;
 };
 
 export default HourlyForecastPill;
