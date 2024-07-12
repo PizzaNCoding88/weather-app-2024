@@ -43,24 +43,28 @@ const HourlyForecastPill = (props) => {
 
   // const path = `/_next/static/media/${currentWeather}.png`;
   const pill = (
-    <div>
-      <div className={Hourly.hour}>
-        {/* {time.daily.temperature_2m_max.map((day, i) => {
-          <p className={Hourly.dayhour}>{time.daily.time[i].slice(-2)}</p>;
-          console.log(time.daily.time[i].slice(-2));
-        })} */}
-        {time.daily.temperature_2m_max.map((temp, i) => (
-          <p className={Hourly.dayHour} key={i}>
-            {time.daily.time[i].slice(-2)}
-          </p>
+    <div className="flex flex-col bg-gray-500 w-[80px]">
+      {/* <div>
+        {Object.values(time.hourly.time).map((item, i) => (
+          <p key={i}>{item.slice(-5)}</p>
         ))}
-        {/* <p className={Hourly.dayhour}>{unixToDate(data.dt)}</p> */}
-        <div>
-          {/* <Image alt="weather Icon" src={path} width={10} height={10}></Image> */}
-        </div>
-        {/* <p className={Hourly.temp}>{high}°C</p>
-        <p className={Hourly.temp}>{low}°C</p> */}
+        <div className={Hourly.hour}></div>
       </div>
+      <div>
+        {Object.values(time.hourly.temperature_2m).map((temp, i) => (
+          <p key={i}>{temp}</p>
+        ))}
+        <div className={Hourly.hour}></div>
+      </div>
+      <div>
+        {Object.values(time.hourly.weather_code).map((code, i) => (
+          <p key={i}>{code}</p>
+        ))}
+        <div className={Hourly.hour}></div>
+      </div> */}
+      <div>time</div>
+      <div>temp</div>
+      <div>forecast</div>
     </div>
   );
   return <div>{time ? pill : null}</div>;
